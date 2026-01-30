@@ -2,7 +2,8 @@
 
 **Status:** Design Complete | Ready for Implementation  
 **Date:** 22 January 2026  
-**Version:** 1.0
+**Version:** 1.0  
+**Implementation repository:** [Shukik85/Simulator](https://github.com/Shukik85/Simulator)
 
 ## 📦 What's Here
 
@@ -132,7 +133,7 @@ After implementing this simulator, you'll understand:
 
 1. **This hour:**
    - Read `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt`
-   - Open `docs/DESIGN_PACKAGE/00_START_HERE.md`
+   - Open `docs/DESIGN_PACKAGE/00_START_HERE.txt`
 
 2. **This week:**
    - Read recommended documents for your role
