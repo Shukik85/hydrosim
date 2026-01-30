@@ -9,28 +9,28 @@
 ### Documentation (5,500+ lines)
 
 **Entry Points:**
-- ✅ `docs/00_READ_ME_FIRST.txt` - Start here (all users)
-- ✅ `docs/00_START_HERE.md` - Project overview (15 min read)
-- ✅ `docs/README_DESIGN_PACKAGE.md` - Role-specific guides
-- ✅ `docs/QUICK_START_DEVELOPERS.txt` - Copy-paste ready commands
+- ✅ `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt` - Start here (all users)
+- ✅ `docs/DESIGN_PACKAGE/00_START_HERE.md` - Project overview (15 min read)
+- ✅ `docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md` - Role-specific guides
+- ✅ `docs/DESIGN_PACKAGE/QUICK_START_DEVELOPERS.txt` - Copy-paste ready commands
 
 **Technical Specifications:**
-- ✅ `docs/01_FOUNDATIONAL_ARCHITECTURE.md` - Why this design (ISO/GOST standards)
-- ✅ `docs/02_REFERENCE_EXCAVATOR_SPEC.md` - CAT 320D real specs
-- ✅ `docs/03_MATHEMATICAL_SPECIFICATION.md` - 15 equations + 72 code examples
-- ✅ `docs/04_SOFTWARE_ARCHITECTURE.md` - UML + class design
-- ✅ `docs/05_DEVELOPMENT_ROADMAP.md` - 16-week timeline (312 hours)
+- ✅ `docs/DESIGN_PACKAGE/01_FOUNDATIONAL_ARCHITECTURE.md` - Why this design (ISO/GOST standards)
+- ✅ `docs/DESIGN_PACKAGE/02_REFERENCE_EXCAVATOR_SPEC.md` - CAT 320D real specs
+- ✅ `docs/DESIGN_PACKAGE/03_MATHEMATICAL_SPECIFICATION.md` - 15 equations + 72 code examples
+- ✅ `docs/DESIGN_PACKAGE/04_SOFTWARE_ARCHITECTURE.md` - UML + class design
+- ✅ `docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md` - 16-week timeline (312 hours)
 
 **Reference Materials:**
-- ✅ `docs/QUICK_REFERENCE.md` - Constants, equations, test templates
-- ✅ `docs/INDEX.md` - Master navigation hub
+- ✅ `docs/DESIGN_PACKAGE/QUICK_REFERENCE.md` - Constants, equations, test templates
+- ✅ `docs/DESIGN_PACKAGE/INDEX.md` - Master navigation hub
 - ✅ Additional summary documents
 
 ### Project Structure
 
 ```
 hydrosim/
-├── docs/                 # All design specifications (5,500+ lines)
+├── docs/DESIGN_PACKAGE/                 # All design specifications (5,500+ lines)
 ├── .gitignore            # Python + IDE exclusions
 ├── README.md             # Project overview
 ├── DESIGN_DELIVERED.md   # This file
@@ -47,7 +47,7 @@ hydrosim/
 | Entry Points | 4 | 900 lines |
 | Technical Specs | 5 | 2,300 lines |
 | Reference | 2 | 900 lines |
-| Summary Docs | 4 | 1,400 lines |
+| Summary docs/DESIGN_PACKAGE | 4 | 1,400 lines |
 | Code Examples | 72 | (in specs) |
 | Diagrams/Tables | 30+ | (throughout) |
 | Standards Referenced | 8 | (ISO/GOST/DIN/ASTM) |
@@ -60,38 +60,38 @@ hydrosim/
 
 **Manager?**
 ```
-1. Read: docs/00_START_HERE.md (15 min)
-2. Read: docs/05_DEVELOPMENT_ROADMAP.md (20 min)
-3. Check: docs/README_DESIGN_PACKAGE.md (Manager section)
+1. Read: docs/DESIGN_PACKAGE/00_START_HERE.md (15 min)
+2. Read: docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md (20 min)
+3. Check: docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md (Manager section)
 → Outcome: Understand scope, timeline, budget
 Time: 40 minutes
 ```
 
 **Architect?**
 ```
-1. Read: docs/01_FOUNDATIONAL_ARCHITECTURE.md (30 min)
-2. Read: docs/03_MATHEMATICAL_SPECIFICATION.md (40 min)
-3. Read: docs/04_SOFTWARE_ARCHITECTURE.md (45 min)
-4. Review: docs/05_DEVELOPMENT_ROADMAP.md (30 min)
+1. Read: docs/DESIGN_PACKAGE/01_FOUNDATIONAL_ARCHITECTURE.md (30 min)
+2. Read: docs/DESIGN_PACKAGE/03_MATHEMATICAL_SPECIFICATION.md (40 min)
+3. Read: docs/DESIGN_PACKAGE/04_SOFTWARE_ARCHITECTURE.md (45 min)
+4. Review: docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md (30 min)
 → Outcome: Verify design completeness
 Time: 2.5 hours
 ```
 
 **Developer?**
 ```
-1. Read: docs/00_START_HERE.md (15 min)
-2. Run: docs/QUICK_START_DEVELOPERS.txt (40 min)
-3. Read: docs/03_MATHEMATICAL_SPECIFICATION.md (40 min)
-4. Code: Phase 0 from docs/05_DEVELOPMENT_ROADMAP.md
+1. Read: docs/DESIGN_PACKAGE/00_START_HERE.md (15 min)
+2. Run: docs/DESIGN_PACKAGE/QUICK_START_DEVELOPERS.txt (40 min)
+3. Read: docs/DESIGN_PACKAGE/03_MATHEMATICAL_SPECIFICATION.md (40 min)
+4. Code: Phase 0 from docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md
 → Outcome: Ready to implement
 Time: 2.5 hours + coding
 ```
 
 **QA/Validation?**
 ```
-1. Read: docs/02_REFERENCE_EXCAVATOR_SPEC.md (25 min)
-2. Read: Phase 7 in docs/05_DEVELOPMENT_ROADMAP.md (20 min)
-3. Check: docs/QUICK_REFERENCE.md (validation values)
+1. Read: docs/DESIGN_PACKAGE/02_REFERENCE_EXCAVATOR_SPEC.md (25 min)
+2. Read: Phase 7 in docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md (20 min)
+3. Check: docs/DESIGN_PACKAGE/QUICK_REFERENCE.md (validation values)
 → Outcome: Define test strategy
 Time: 60 minutes
 ```
@@ -195,8 +195,8 @@ TOTAL: 312 hours (6-8 weeks full-time, 12-16 part-time)
 
 ### IMMEDIATE (This hour)
 1. Clone repo: `git clone https://github.com/Shukik85/hydrosim.git`
-2. Read: `docs/00_READ_ME_FIRST.txt` (5 min)
-3. Open: `docs/README_DESIGN_PACKAGE.md` (find your role)
+2. Read: `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt` (5 min)
+3. Open: `docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md` (find your role)
 
 ### THIS WEEK
 1. Read: Role-specific documents (1-2.5 hours)
@@ -204,14 +204,14 @@ TOTAL: 312 hours (6-8 weeks full-time, 12-16 part-time)
 3. First commit: `[SETUP] Project structure`
 
 ### NEXT WEEK (Phase 0)
-1. Read: `docs/05_DEVELOPMENT_ROADMAP.md` (Phase 0)
+1. Read: `docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md` (Phase 0)
 2. Code: `hydrosim/core/units.py`
 3. Code: `hydrosim/core/types.py`
 4. Tests: 40+ unit tests
 5. Commit: `[PHASE-0] Foundations ready`
 
 ### WEEKS 2-16 (Phases 1-7)
-1. Follow roadmap from `docs/05_DEVELOPMENT_ROADMAP.md`
+1. Follow roadmap from `docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md`
 2. Weekly commits with `[PHASE-N]` tags
 3. Validate against benchmarks
 4. Final commit: `[PHASE-7] Validation complete`
@@ -223,35 +223,35 @@ TOTAL: 312 hours (6-8 weeks full-time, 12-16 part-time)
 ### For Reading
 ```bash
 # Browse GitHub directly
-Open: https://github.com/Shukik85/hydrosim/tree/main/docs
+Open: https://github.com/Shukik85/hydrosim/tree/main/docs/DESIGN_PACKAGE
 
 # Or clone and read locally
 git clone https://github.com/Shukik85/hydrosim.git
-cd hydrosim/docs
+cd hydrosim/docs/DESIGN_PACKAGE
 cat 00_READ_ME_FIRST.txt
 ```
 
 ### For Quick Lookup
 ```bash
 # Open quick reference (bookmark this!)
-open docs/QUICK_REFERENCE.md
+open docs/DESIGN_PACKAGE/QUICK_REFERENCE.md
 
 # Or search by topic
-grep -r "Walther" docs/
-grep -r "Load Sensing" docs/
-grep -r "CAT 320D" docs/
+grep -r "Walther" docs/DESIGN_PACKAGE/
+grep -r "Load Sensing" docs/DESIGN_PACKAGE/
+grep -r "CAT 320D" docs/DESIGN_PACKAGE/
 ```
 
 ### For Implementation
 ```bash
 # Copy setup commands
-cat docs/QUICK_START_DEVELOPERS.txt
+cat docs/DESIGN_PACKAGE/QUICK_START_DEVELOPERS.txt
 
 # Copy code examples
-grep -A 10 "python" docs/03_MATHEMATICAL_SPECIFICATION.md
+grep -A 10 "python" docs/DESIGN_PACKAGE/03_MATHEMATICAL_SPECIFICATION.md
 
 # Copy test templates
-grep -A 20 "def test" docs/QUICK_REFERENCE.md
+grep -A 20 "def test" docs/DESIGN_PACKAGE/QUICK_REFERENCE.md
 ```
 
 ---
@@ -302,7 +302,7 @@ After implementing this simulator, you'll understand:
 ## ❓ FAQ
 
 **Q: Where do I start?**  
-A: `docs/00_READ_ME_FIRST.txt` (5 minutes), then `docs/README_DESIGN_PACKAGE.md` (find your role).
+A: `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt` (5 minutes), then `docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md` (find your role).
 
 **Q: How long will this take?**  
 A: 6-8 weeks full-time (312 hours) or 12-16 weeks part-time.
@@ -314,10 +314,10 @@ A: You need to understand enough to implement. All equations are explained with 
 A: No. Each phase builds on the previous. All phases are required.
 
 **Q: Where are the constants?**  
-A: `docs/QUICK_REFERENCE.md` (search for ISO VG46 or CAT 320D).
+A: `docs/DESIGN_PACKAGE/QUICK_REFERENCE.md` (search for ISO VG46 or CAT 320D).
 
 **Q: Where are the equations?**  
-A: `docs/03_MATHEMATICAL_SPECIFICATION.md` with 72 code examples.
+A: `docs/DESIGN_PACKAGE/03_MATHEMATICAL_SPECIFICATION.md` with 72 code examples.
 
 **Q: Where's the code?**  
 A: You implement from templates. That's the learning experience.
@@ -326,7 +326,7 @@ A: You implement from templates. That's the learning experience.
 A: Compare against CAT 320D specs. All benchmarks provided.
 
 **Q: What if I get stuck?**  
-A: See: `docs/INDEX.md` (cross-references) or `docs/QUICK_REFERENCE.md` (lookup).
+A: See: `docs/DESIGN_PACKAGE/INDEX.md` (cross-references) or `docs/DESIGN_PACKAGE/QUICK_REFERENCE.md` (lookup).
 
 ---
 
@@ -334,7 +334,7 @@ A: See: `docs/INDEX.md` (cross-references) or `docs/QUICK_REFERENCE.md` (lookup)
 
 ```
 https://github.com/Shukik85/hydrosim
-├── docs/
+├── docs/DESIGN_PACKAGE/
 │  ├── 00_READ_ME_FIRST.txt              ✓ Start here
 │  ├── 00_START_HERE.md                 ✓ Overview (15 min)
 │  ├── 01_FOUNDATIONAL_ARCHITECTURE.md  ✓ Theory
@@ -397,11 +397,11 @@ https://github.com/Shukik85/hydrosim
 
 ## 🌠 GETTING STARTED RIGHT NOW
 
-1. **Open:** https://github.com/Shukik85/hydrosim/blob/main/docs/00_READ_ME_FIRST.txt
+1. **Open:** https://github.com/Shukik85/hydrosim/blob/main/docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt
 
 2. **Read:** For 5 minutes
 
-3. **Then:** Open docs/README_DESIGN_PACKAGE.md (find your role)
+3. **Then:** Open docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md (find your role)
 
 4. **Follow:** Role-specific reading path (1-2.5 hours)
 
@@ -412,18 +412,18 @@ https://github.com/Shukik85/hydrosim
 ## 📞 SUPPORT
 
 **Need to find something?**
-- Use: `docs/INDEX.md` (master navigation)
-- Search: `docs/QUICK_REFERENCE.md` (constants, equations, code)
-- Browse: GitHub directly at `/docs/`
+- Use: `docs/DESIGN_PACKAGE/INDEX.md` (master navigation)
+- Search: `docs/DESIGN_PACKAGE/QUICK_REFERENCE.md` (constants, equations, code)
+- Browse: GitHub directly at `/docs/DESIGN_PACKAGE/`
 
 **Need help getting started?**
-- Read: `docs/QUICK_START_DEVELOPERS.txt` (copy-paste commands)
-- Follow: `docs/README_DESIGN_PACKAGE.md` (your role)
+- Read: `docs/DESIGN_PACKAGE/QUICK_START_DEVELOPERS.txt` (copy-paste commands)
+- Follow: `docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md` (your role)
 
 **Need technical details?**
-- See: `docs/03_MATHEMATICAL_SPECIFICATION.md` (equations)
-- See: `docs/04_SOFTWARE_ARCHITECTURE.md` (class design)
-- See: `docs/02_REFERENCE_EXCAVATOR_SPEC.md` (CAT 320D)
+- See: `docs/DESIGN_PACKAGE/03_MATHEMATICAL_SPECIFICATION.md` (equations)
+- See: `docs/DESIGN_PACKAGE/04_SOFTWARE_ARCHITECTURE.md` (class design)
+- See: `docs/DESIGN_PACKAGE/02_REFERENCE_EXCAVATOR_SPEC.md` (CAT 320D)
 
 ---
 
@@ -435,9 +435,9 @@ The physics is correct. The architecture is sound. The timeline is realistic. Th
 
 All that's left is implementation, learning, and success.
 
-**Start here:** `docs/00_READ_ME_FIRST.txt`
+**Start here:** `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt`
 
-**Then here:** `docs/README_DESIGN_PACKAGE.md` (find your role)
+**Then here:** `docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md` (find your role)
 
 **Then code:** Phase 0, Week 1
 
@@ -446,6 +446,6 @@ All that's left is implementation, learning, and success.
 **Status:** ✅ Design Package Complete | Ready for Implementation  
 **Date:** 22 January 2026  
 **Repository:** https://github.com/Shukik85/hydrosim  
-**Next:** Open docs/00_READ_ME_FIRST.txt
+**Next:** Open docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt
 
 **Let's build something real.** 🚀

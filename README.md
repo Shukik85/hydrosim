@@ -16,24 +16,24 @@ This repository contains a complete, production-grade design specification for a
 ## 🚀 Quick Start
 
 1. **New to this project?**
-   - Open `docs/00_READ_ME_FIRST.txt` (5 min)
-   - Read `docs/00_START_HERE.md` (15 min)
+   - Open `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt` (5 min)
+   - Read `docs/DESIGN_PACKAGE/00_START_HERE.md` (15 min)
 
 2. **Know your role?**
-   - Check `docs/README_DESIGN_PACKAGE.md` for your path
+   - Check `docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md` for your path
    - Manager: 40 min read
    - Architect: 150 min read
    - Developer: 150 min read
    - QA: 60 min read
 
 3. **Ready to code?**
-   - Read `docs/05_DEVELOPMENT_ROADMAP.md`
+   - Read `docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md`
    - Follow Phase 0 (Week 1) tasks
    - Start with `hydrosim/core/units.py`
 
 ## 📚 Documentation
 
-All design documentation is in `docs/` directory:
+All design documentation is in `docs/DESIGN_PACKAGE/` directory:
 
 - **Entry:** `00_READ_ME_FIRST.txt`, `00_START_HERE.md`
 - **Technical:** `01-05_*.md` (architecture, spec, math, code, roadmap)
@@ -87,7 +87,7 @@ hydrosim/
 ├── control/           # Load Sensing, joystick
 ├── simulator/         # ODE engine, state management
 ├── diagnostics/       # Energy analysis, faults
-└── docs/              # This documentation (15 files)
+└── docs/DESIGN_PACKAGE/              # This documentation (15 files)
 ```
 
 ## ✅ Success Criteria
@@ -102,12 +102,12 @@ hydrosim/
 
 ## 📞 Getting Help
 
-- **Quick lookup:** See `docs/QUICK_REFERENCE.md`
-- **Navigation:** See `docs/INDEX.md`
-- **Your role:** See `docs/README_DESIGN_PACKAGE.md`
-- **Stuck on equation:** See `docs/03_MATHEMATICAL_SPECIFICATION.md`
-- **Stuck on code:** See `docs/04_SOFTWARE_ARCHITECTURE.md`
-- **Progress tracking:** See `docs/05_DEVELOPMENT_ROADMAP.md`
+- **Quick lookup:** See `docs/DESIGN_PACKAGE/QUICK_REFERENCE.md`
+- **Navigation:** See `docs/DESIGN_PACKAGE/INDEX.md`
+- **Your role:** See `docs/DESIGN_PACKAGE/README_DESIGN_PACKAGE.md`
+- **Stuck on equation:** See `docs/DESIGN_PACKAGE/03_MATHEMATICAL_SPECIFICATION.md`
+- **Stuck on code:** See `docs/DESIGN_PACKAGE/04_SOFTWARE_ARCHITECTURE.md`
+- **Progress tracking:** See `docs/DESIGN_PACKAGE/05_DEVELOPMENT_ROADMAP.md`
 
 ## 🎓 Learning Outcomes
 
@@ -131,8 +131,8 @@ After implementing this simulator, you'll understand:
 ## 🚀 Next Steps
 
 1. **This hour:**
-   - Read `docs/00_READ_ME_FIRST.txt`
-   - Open `docs/00_START_HERE.md`
+   - Read `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt`
+   - Open `docs/DESIGN_PACKAGE/00_START_HERE.md`
 
 2. **This week:**
    - Read recommended documents for your role
@@ -146,5 +146,5 @@ After implementing this simulator, you'll understand:
 ---
 
 **Status:** ✅ Design Complete | Ready for Implementation  
-**Start with:** `docs/00_READ_ME_FIRST.txt`  
+**Start with:** `docs/DESIGN_PACKAGE/00_READ_ME_FIRST.txt`  
 **Let's build something real.** 🚀
