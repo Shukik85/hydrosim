@@ -1,0 +1,179 @@
+# VISUAL SUMMARY: ARCHITECTURE ASCII-ART
+
+```
+╔════════════════════════════════════════════════════════════════════════════╗
+║           HYDRAULIC DIAGNOSTIC PLATFORM - ARCHITECTURE OVERVIEW           ║
+║                      CAT 320D Excavator + ML Diagnostics                   ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          FRONTEND (Nuxt 4 + Tailwind)                       │
+│  ┌────────────────┐  ┌──────────────┐  ┌────────────────┐                 │
+│  │  Dashboard     │  │ Telemetry    │  │  Alerts        │                 │
+│  │  Real-time     │  │  Charts      │  │  Notifications │                 │
+│  │  3D Vis        │  │  Time-series │  │  History       │                 │
+│  └────────────────┘  └──────────────┘  └────────────────┘                 │
+│                              ▲                                              │
+│                        WebSocket / REST API                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    │                               │
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                        FASTAPI BACKEND (Python 3.11)                        │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  TIER 1: API GATEWAY                                                       │
+│  ├─ /api/v1/simulate  POST  (mechanics simulation)                        │
+│  ├─ /api/v1/predict   POST  (ML anomaly prediction)                       │
+│  ├─ /api/v1/telemetry GET   (sensor data stream)                          │
+│  └─ /health           GET   (liveness probe)                              │
+│                                                                              │
+│  TIER 2: BUSINESS LOGIC                                                   │
+│  ├─ MECHANICS MODULE                                                      │
+│  │  ├─ kinematics.py       Eq. 1-3   Forward/Inverse FK                 │
+│  │  ├─ dynamics.py         Eq. 6     ODE solver (angular accel)         │
+│  │  └─ hydraulics.py       Eq. 4-5,7-8  Pressure/flow calculations     │
+│  │                                                                         │
+│  ├─ ML MODULE                                                             │
+│  │  ├─ features.py         Eq. 9-12   50+ features (dP/dt, variance)    │
+│  │  ├─ models.py           Eq. 13-14  LSTM + Isolation Forest          │
+│  │  └─ ensemble.py         Eq. 15     Weighted voting (final score)     │
+│  │                                                                         │
+│  ├─ CONFIG LAYER                                                          │
+│  │  ├─ cat320d.yaml       CAT 320D parameters (dimensions, masses)      │
+│  │  ├─ settings.py        Environment config (DB, Redis, secrets)       │
+│  │  └─ models_weights/    Pre-trained LSTM + IF models                 │
+│  │                                                                         │
+│  └─ SECURITY LAYER                                                        │
+│     ├─ Authentication    JWT (access 15min, refresh 7d)                 │
+│     ├─ Authorization     RBAC (Operator, Technician, Admin)             │
+│     ├─ Rate Limiting     100 req/min per IP                             │
+│     └─ Audit Trail       All actions logged                              │
+│                                                                              │
+│  TIER 3: CACHE LAYER                                                      │
+│  ├─ Redis (in-process caching for repeated calculations)                 │
+│  └─ Celery (async task queue for batch processing)                       │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+                    ▲                              ▲                    ▲
+                    │                              │                    │
+                    │ Stored                       │ Cached             │ Queue
+                    │ 5-year                       │ <1 sec             │ Tasks
+                    │ retention                    │                    │
+                    │                              │                    │
+    ┌────────────────┴───────────────┐    ┌─────────┴───┐    ┌────────┴────┐
+    │                                │    │             │    │             │
+┌───▼──────────────────────────────────┐  │  REDIS  7.0 │    │  CELERY     │
+│     TIMESCALEDB (PostgreSQL)         │  │   (cache)   │    │  (async)    │
+├──────────────────────────────────────┤  │             │    │             │
+│ hypertable telemetry_data            │  └─────────────┘    └─────────────┘
+│  ├─ timestamp (indexed)              │
+│  ├─ sensor_name (indexed)            │
+│  ├─ pressure values (real)           │
+│  ├─ temperature (real)               │
+│  └─ anomaly_score (real)             │
+│                                      │
+│ Compression:                         │
+│  - 7d: raw data                      │
+│  - 30d: hourly aggregates            │
+│  - 5y: daily aggregates              │
+│                                      │
+│ Retention:                           │
+│  - Raw: 1 year                       │
+│  - Aggregates: 5 years               │
+│  - Alerts: 2 years                   │
+└──────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                        DATA FLOW: REAL-TIME PIPELINE                      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+  SENSORS                 MECHANICS                  ML PIPELINE
+  (1000 Hz)              SIMULATION                  (100 Hz window)
+
+     │                         │                              │
+     ├─ Pressure boom          │                              │
+     ├─ Pressure arm     ──►   ├─ FK: angles→positions      │
+     ├─ Pressure bucket  │     ├─ IK: positions→angles   ──►├─ Extract 50+ features
+     ├─ Angles (boom,ARM)      ├─ ODE: F→acceleration       │
+     ├─ Temperature      │     ├─ Hydraulics: τ→pressure    │
+     └─ RPM              │     └─ Load model                │
+                                  │                          │
+                                  ▼ (interpolate)         ──►├─ LSTM encode
+                                                             ├─ Isolation Forest
+                          ┌─────────────────┐                │
+                          │ State Vector    │            ──►├─ Ensemble vote
+                          │ ─────────────   │                │
+                          │ x: positions    │                ├─ Anomaly score
+                          │ ẋ: velocities   │                │ (0-1)
+                          │ τ: pressures    │                │
+                          └─────────────────┘            ──►├─ Alert threshold
+                                  │                          │
+                                  ▼                          ▼
+                          ┌─────────────────────────────────────┐
+                          │   ALERT DECISION                    │
+                          ├─────────────────────────────────────┤
+                          │ score > 0.6 → HIGH anomaly         │
+                          │ score > 0.5 → MEDIUM anomaly       │
+                          │ score < 0.5 → NORMAL               │
+                          │                                     │
+                          │ ─────────────────────────────────   │
+                          │ Anomaly Types:                      │
+                          │ ├─ Leakage (pressure ↓)            │
+                          │ ├─ Cavitation (spikes)             │
+                          │ ├─ Mechanical wear (noise ↑)       │
+                          │ └─ Thermal runaway (temp ↑↑)      │
+                          └─────────────────────────────────────┘
+                                  │
+                                  ▼
+                          ┌──────────────────┐
+                          │  LOG + ALERT     │
+                          ├──────────────────┤
+                          │ DB: audit trail  │
+                          │ WebSocket: UI    │
+                          │ Email: admin     │
+                          │ SMS: urgent      │
+                          └──────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                        DEPLOYMENT ARCHITECTURE                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+LOCAL DEVELOPMENT            STAGING              PRODUCTION
+─────────────────            ───────              ──────────
+
+docker-compose.yml      Kubernetes (single)   Kubernetes (HA)
+│                          │                    │
+├─ Backend                 ├─ FastAPI           ├─ FastAPI (3 replicas)
+├─ DB (TimescaleDB)        ├─ DB                ├─ TimescaleDB (HA)
+├─ Redis                   ├─ Redis (1)         ├─ Redis (cluster)
+└─ Frontend (Nuxt)         └─ Frontend          ├─ Load balancer
+                                                ├─ Monitoring
+                                                ├─ Logging
+                                                └─ Backup (daily)
+
+CI/CD PIPELINE
+──────────────
+Code → Push → GitHub Actions
+  │
+  ├─ Ruff lint + format
+  ├─ Bandit security scan
+  ├─ Unit tests (pytest)
+  ├─ Integration tests
+  ├─ Performance tests
+  │
+  ├─ ✓ All tests pass?
+  │
+  ├─ Docker build + scan
+  ├─ Push to registry
+  │
+  ├─ Deploy to staging
+  ├─ Smoke tests
+  │
+  └─ Manual approval
+     └─ Deploy to production
+
+```
+
+**Last updated:** 2026-01-30
